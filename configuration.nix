@@ -31,6 +31,7 @@
     fsType = "ext4";
   };
 
+
   networking.hostName = "nixos"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -40,15 +41,7 @@
   networking.networkmanager.enable = true;
   networking.useDHCP = false;
   networking.interfaces.wlp1s0.useDHCP = true;
-  networking.wireless.networks = {
-    "Free the Paedos 5G" = {
-      psk = "55328478";
-    };
-    "FabbitAoyama" = {
-      psk = "Fabbit6005";
-    };
-  };
-
+  networking.wireless.networks = import ./wifi-networks.nix;
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -57,11 +50,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
   
   time.timeZone = "Asia/Tokyo";
-
-  #console = {
-    #font = "Roboto";
-    #keyMap = "us";
-  #};
 
   services.xserver = { 
     windowManager.xmonad = { 
@@ -94,27 +82,29 @@
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
+  nixpkgs.config.allowUnfree = true;
   home-manager.users.chris = { 
     programs.git = {
       enable = true;
       userName = "chrisharriscjh";
-      userEmail = "chrisharriscjh@gmail.com";
+      userEmail = "chrisharris_cjh@hotmail.com";
     };
     home.sessionVariables = {
       EDITOR = "nvim";
       TEST_THEN_DELETE_ME = "working";
     };
     home.packages = [ 
-      pkgs.dunst
-      pkgs.curl
-      pkgs.nnn
-      pkgs.neovim
-      pkgs.qutebrowser
-      pkgs.autorandr
-      pkgs.firefox
-      pkgs.chromium 
       pkgs.alacritty
+      pkgs.autorandr
+      pkgs.chromium 
+      pkgs.curl
+      pkgs.dunst
+      pkgs.libnotify
       pkgs.fzf
+      pkgs.neovim
+      pkgs.nnn
+      pkgs.qutebrowser
+      pkgs.firefox
       pkgs.xcape
       pkgs.feh
       pkgs.rofi
@@ -122,41 +112,57 @@
       pkgs.pavucontrol
       pkgs.gparted
       pkgs.fd
+      pkgs.zoom-us
+      #import ./applications/popuptimedate.nix
     ];
     home.file.".vimrc".source = /cfg/vimrc;
     home.username = "chris";
     home.homeDirectory = "/home/chris";
     home.stateVersion = "21.03";
+    services.dunst = {
+      enable = true;
+      settings = {
+        global = {
+          transparency = 10;
+          notification_height = 0;
+          separator_height = 2;
+          padding = 15;
+          geometry = "600x50-50+65";
+          follow = "keyboard";
+          markup = "full";
+          font = "Roboto";
+          format = ''<b>%s</b>\n%b'';
+        };
+      };
+    #xsession.windowManager.i3.config.startup = [{ command = "${pkgs.dunst}/bin/dunst"; }];
+    };
+    services.screen-locker = {
+      enable = true;
+      inactiveInterval = 10;
+      lockCmd = "${pkgs.betterlockscreen}/bin/betterlockscreen -l dim";
+      xautolockExtraOptions = [
+        "Xautolock.killer: systemctl suspend"
+      ];
+    };
+    services.picom = {
+      enable = true;
+      activeOpacity = "1.0";
+      inactiveOpacity = "0.8";
+      backend = "glx";
+      fade = true;
+      fadeDelta = 5;
+      opacityRule = [ "100:name *= 'i3lock'" ];
+      shadow = true;
+      shadowOpacity = "0.75";
+    };
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget vim networkmanager git xorg.xkbcomp roboto-mono roboto xterm 
+    wget vim networkmanager git xorg.xkbcomp roboto-mono roboto xterm xclip
   ];
 
-  #programs.neovim = {
-  #  enable = true;
-  #  configure = pkgs.neovimConfigure // {
-  #    customRC = ''
-  #      source /cfg/.vimrc
-  #    '';
-  #  };
-  #};
-  environment.variables.EDITOR = "nvim";
-  #vimrc = import ./vimrc;
-  #environment.etc."vimrc".text = vimrc;
+  environment.variables.EDITOR = "vim";
   
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
@@ -168,23 +174,5 @@
 
   system.stateVersion = "20.09"; # Did you read the comment?
 
-  #home-manager.users.chris = {
-    #services.dunst = {
-      #enable = true;
-      #settings = {
-        #global = {
-          #transparency = 16;
-          #notification_height = 0;
-          #separator_height = 2;
-          #padding = 15;
-          #follow = "keyboard";
-          #markup = "full";
-          #font = "Roboto";
-          #format = "<b>%s</b>\n%b";
-        #};
-      #};
-    ##xsession.windowManager.i3.config.startup = [{ command = "${pkgs.dunst}/bin/dunst"; }];
-    #};
-  #};
 }
 
