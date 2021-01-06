@@ -18,6 +18,8 @@
 
   hardware.bluetooth.enable = true;
 
+  virtualisation.docker.enable = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -63,8 +65,9 @@
   };
 
   users.users.chris = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    isNormalUser  = true;
+    extraGroups   = [ "wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
+    shell         = pkgs.bash;
   };
 
   home-manager.users.chris = import ./home/chris.nix;
@@ -73,6 +76,15 @@
     wget vim networkmanager git xorg.xkbcomp roboto-mono roboto xterm xclip
     usbutils bolt
   ];
+
+  nix = {
+    autoOptimiseStore = true;
+    gc = {
+      automatic = true;
+      dates     = "weekly";
+      options   = "--delete-older-than 7d";
+    };
+  };
 
   services.hardware.bolt.enable = true;
   environment.variables.EDITOR = "vim";

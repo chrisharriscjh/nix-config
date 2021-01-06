@@ -22,38 +22,40 @@ in {
     EDITOR = "nvim";
     TEST_THEN_DELETE_ME = "working";
   };
-  home.packages = [ 
-    pkgs.alacritty
+  home.packages = with pkgs; [ 
+    any-nix-shell
+    alacritty
+    autorandr
+    conda
+    chromium 
+    curl
+    dunst
+    fd
+    firefox
+    fzf
+    gparted
+    libnotify
+    neovim
+    neovim-remote
+    nnn
+    pavucontrol
+    poetry
     popupTimeDate
-    pkgs.autorandr
-    pkgs.conda
-    pkgs.chromium 
-    pkgs.curl
-    pkgs.dunst
-    pkgs.libnotify
-    pkgs.fzf
-    pkgs.neovim
-    pkgs.nnn
-    pkgs.qutebrowser
-    pkgs.firefox
-    pkgs.xcape
-    pkgs.feh
-    pkgs.rofi
-    pkgs.neovim-remote
-    pkgs.pavucontrol
-    pkgs.gparted
-    pkgs.fd
-    pkgs.zoom-us
-    pkgs.tree
-    pkgs.xorg.xev
-    pkgs.python3
-    pkgs.pythonPackages.pip
-    pkgs.pythonPackages.numpy
-    pkgs.pythonPackages.scipy
-    pkgs.pythonPackages.matplotlib
-    pkgs.pythonPackages.pandas
-    pkgs.pythonPackages.notebook
-    pkgs.teams
+    python3
+    killall
+    libreoffice
+    qutebrowser
+    feh
+    rofi
+    jdk11
+    sbt
+    (scala.override { jre = pkgs.jdk11; })
+    nodejs
+    teams
+    tree
+    xcape
+    xorg.xev
+    zoom-us
   ];
   home.file.".vimrc".source = /cfg/vimrc;
   home.username = "chris";
@@ -94,5 +96,9 @@ in {
     opacityRule = [ "100:name *= 'i3lock'" ];
     shadow = true;
     shadowOpacity = "0.75";
+  };
+  services.xcape = {
+    enable = true;
+    mapExpression = { Caps_Lock = "Escape"; };
   };
 }

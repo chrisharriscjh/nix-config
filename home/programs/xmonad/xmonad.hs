@@ -39,6 +39,7 @@ myAdditionalKeys =
   , ((mod4Mask, xK_f), spawn ("exec /usr/local/bin/myrmidon.sh ~/.myrmidon-tasks.json"))---fn '" ++ myFont ++ "' -nb '" ++ myNormalBGColor ++ "' -nf '" ++ myNormalFGColor ++ "' -sb '" ++ myFocusedBGColor ++ "' -sf '" ++ myFocusedFGColor ++ "'`")
   , ((mod4Mask, xK_g), spawn ("alacritty -e nvim -c ':terminal'"))
   , ((mod4Mask, xK_c), spawn ("popupTimeDate"))
+  , ((mod4Mask, xK_v ), kill)
   ] ++ 
   [((m .|. mod4Mask, k), windows $ f i)
     | (i, k) <- zip myWorkspaces workSpaceShortcuts     
