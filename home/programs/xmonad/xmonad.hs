@@ -20,7 +20,7 @@ main = do
     , focusedBorderColor = "Dark Blue"
     , workspaces = myWorkspaces
     , layoutHook = myLayoutHook
-    , startupHook = myStartupHook
+    --, startupHook = myStartupHook
     , logHook = myLogHook
         --dynamicLogWithPP xmobarPP {
         --ppOutput = hPutStrLn h
@@ -38,7 +38,7 @@ myAdditionalKeys =
   , ((mod4Mask, xK_d), spawn ("rofi -show drun"))---fn '" ++ myFont ++ "' -nb '" ++ myNormalBGColor ++ "' -nf '" ++ myNormalFGColor ++ "' -sb '" ++ myFocusedBGColor ++ "' -sf '" ++ myFocusedFGColor ++ "'`")
   , ((mod4Mask, xK_f), spawn ("exec /usr/local/bin/myrmidon.sh ~/.myrmidon-tasks.json"))---fn '" ++ myFont ++ "' -nb '" ++ myNormalBGColor ++ "' -nf '" ++ myNormalFGColor ++ "' -sb '" ++ myFocusedBGColor ++ "' -sf '" ++ myFocusedFGColor ++ "'`")
   , ((mod4Mask, xK_g), spawn ("alacritty -e nvim -c ':terminal'"))
-  , ((mod4Mask, xK_c), spawn ("popuptimedate"))
+  , ((mod4Mask, xK_c), spawn ("popupTimeDate"))
   ] ++ 
   [((m .|. mod4Mask, k), windows $ f i)
     | (i, k) <- zip myWorkspaces workSpaceShortcuts     
@@ -50,12 +50,12 @@ myLogHook :: X ()
 myLogHook = fadeInactiveLogHook fadeAmount
   where fadeAmount = 0.85
 
-myStartupHook :: X ()
-myStartupHook = composeAll
-  [ spawnOnOnce "Sys" "alacritty --hold -e archey3"
-  , spawnOnOnce "Sys" "alacritty --hold -e ncspot"
-  , spawnOnOnce "Sys" "qutebrowser -r msg"
-  ]
+--myStartupHook :: X ()
+--myStartupHook = composeAll
+  --[ spawnOnOnce "Sys" "alacritty --hold -e archey3"
+  --, spawnOnOnce "Sys" "alacritty --hold -e ncspot"
+  --, spawnOnOnce "Sys" "qutebrowser -r msg"
+  --]
 
 myManageHook = composeAll []
 --composeAll

@@ -71,9 +71,10 @@
 
   environment.systemPackages = with pkgs; [
     wget vim networkmanager git xorg.xkbcomp roboto-mono roboto xterm xclip
-    usbutils
+    usbutils bolt
   ];
 
+  services.hardware.bolt.enable = true;
   environment.variables.EDITOR = "vim";
   
   # Enable the OpenSSH daemon.

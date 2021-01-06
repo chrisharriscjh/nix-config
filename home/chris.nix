@@ -26,6 +26,7 @@ in {
     pkgs.alacritty
     popupTimeDate
     pkgs.autorandr
+    pkgs.conda
     pkgs.chromium 
     pkgs.curl
     pkgs.dunst
@@ -47,7 +48,12 @@ in {
     pkgs.xorg.xev
     pkgs.python3
     pkgs.pythonPackages.pip
-    pkgs.conda
+    pkgs.pythonPackages.numpy
+    pkgs.pythonPackages.scipy
+    pkgs.pythonPackages.matplotlib
+    pkgs.pythonPackages.pandas
+    pkgs.pythonPackages.notebook
+    pkgs.teams
   ];
   home.file.".vimrc".source = /cfg/vimrc;
   home.username = "chris";
