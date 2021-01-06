@@ -13,6 +13,7 @@
   imports = [
     ./hardware-configuration.nix
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-20.09.tar.gz}/nixos")
+    ./system/wm/xmonad.nix
   ];
 
   hardware.bluetooth.enable = true;
@@ -51,22 +52,6 @@
   
   time.timeZone = "Asia/Tokyo";
 
-  services.xserver = { 
-    windowManager.xmonad = { 
-      enable = true;
-      enableContribAndExtras = true;
-      extraPackages = haskellPackages: [
-        haskellPackages.xmonad-contrib
-	haskellPackages.xmonad-extras
-	haskellPackages.xmonad
-      ];
-    };
-    enable = true;
-    displayManager.defaultSession = "none+xmonad";
-    desktopManager.plasma5.enable = true;
-  };
-  
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -82,83 +67,11 @@
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
-  nixpkgs.config.allowUnfree = true;
-  home-manager.users.chris = { 
-    programs.git = {
-      enable = true;
-      userName = "chrisharriscjh";
-      userEmail = "chrisharris_cjh@hotmail.com";
-    };
-    home.sessionVariables = {
-      EDITOR = "nvim";
-      TEST_THEN_DELETE_ME = "working";
-    };
-    home.packages = [ 
-      pkgs.alacritty
-      pkgs.autorandr
-      pkgs.chromium 
-      pkgs.curl
-      pkgs.dunst
-      pkgs.libnotify
-      pkgs.fzf
-      pkgs.neovim
-      pkgs.nnn
-      pkgs.qutebrowser
-      pkgs.firefox
-      pkgs.xcape
-      pkgs.feh
-      pkgs.rofi
-      pkgs.neovim-remote
-      pkgs.pavucontrol
-      pkgs.gparted
-      pkgs.fd
-      pkgs.zoom-us
-      #import ./applications/popuptimedate.nix
-    ];
-    home.file.".vimrc".source = /cfg/vimrc;
-    home.username = "chris";
-    home.homeDirectory = "/home/chris";
-    home.stateVersion = "21.03";
-    services.dunst = {
-      enable = true;
-      settings = {
-        global = {
-          transparency = 10;
-          notification_height = 0;
-          separator_height = 2;
-          padding = 15;
-          geometry = "600x50-50+65";
-          follow = "keyboard";
-          markup = "full";
-          font = "Roboto";
-          format = ''<b>%s</b>\n%b'';
-        };
-      };
-    #xsession.windowManager.i3.config.startup = [{ command = "${pkgs.dunst}/bin/dunst"; }];
-    };
-    services.screen-locker = {
-      enable = true;
-      inactiveInterval = 10;
-      lockCmd = "${pkgs.betterlockscreen}/bin/betterlockscreen -l dim";
-      xautolockExtraOptions = [
-        "Xautolock.killer: systemctl suspend"
-      ];
-    };
-    services.picom = {
-      enable = true;
-      activeOpacity = "1.0";
-      inactiveOpacity = "0.8";
-      backend = "glx";
-      fade = true;
-      fadeDelta = 5;
-      opacityRule = [ "100:name *= 'i3lock'" ];
-      shadow = true;
-      shadowOpacity = "0.75";
-    };
-  };
+  home-manager.users.chris = import ./home/chris.nix;
 
   environment.systemPackages = with pkgs; [
     wget vim networkmanager git xorg.xkbcomp roboto-mono roboto xterm xclip
+    usbutils
   ];
 
   environment.variables.EDITOR = "vim";
