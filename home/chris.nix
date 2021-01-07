@@ -9,15 +9,13 @@ let
   '';
 in {
   imports = [
+    ./programs/git/default.nix
     ./programs/xmonad/default.nix
+    ./programs/rofi/default.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
-  programs.git = {
-    enable = true;
-    userName = "chrisharriscjh";
-    userEmail = "chrisharris_cjh@hotmail.com";
-  };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     TEST_THEN_DELETE_ME = "working";
@@ -31,26 +29,28 @@ in {
     curl
     dunst
     fd
+    feh
     firefox
     fzf
+    gimp
     gparted
+    jdk11
+    killall
+    kitty
     libnotify
+    libreoffice
+    maim
     neovim
     neovim-remote
     nnn
+    nodejs
     pavucontrol
     poetry
     popupTimeDate
-    python3
-    killall
-    libreoffice
     qutebrowser
-    feh
     rofi
-    jdk11
     sbt
     (scala.override { jre = pkgs.jdk11; })
-    nodejs
     teams
     tree
     xcape
@@ -61,6 +61,7 @@ in {
   home.username = "chris";
   home.homeDirectory = "/home/chris";
   home.stateVersion = "21.03";
+
   services.dunst = {
     enable = true;
     settings = {

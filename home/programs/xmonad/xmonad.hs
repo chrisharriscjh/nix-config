@@ -20,12 +20,7 @@ main = do
     , focusedBorderColor = "Dark Blue"
     , workspaces = myWorkspaces
     , layoutHook = myLayoutHook
-    --, startupHook = myStartupHook
     , logHook = myLogHook
-        --dynamicLogWithPP xmobarPP {
-        --ppOutput = hPutStrLn h
-        --, ppCurrent = xmobarColor "MidnightBlue" "" . wrap "[" "]"
-        --} >> myLogHook 
     } `additionalKeys` myAdditionalKeys
 
 --toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
@@ -35,7 +30,7 @@ workSpaceShortcuts = [xK_y, xK_u, xK_i, xK_o, xK_p, xK_bracketleft, xK_bracketri
 
 myAdditionalKeys = 
   [ ((mod4Mask, xK_w), spawn "qutebrowser")
-  , ((mod4Mask, xK_d), spawn ("rofi -show drun"))---fn '" ++ myFont ++ "' -nb '" ++ myNormalBGColor ++ "' -nf '" ++ myNormalFGColor ++ "' -sb '" ++ myFocusedBGColor ++ "' -sf '" ++ myFocusedFGColor ++ "'`")
+  , ((mod4Mask, xK_d), spawn ("rofi -modi drun,ssh,window -show drun -show-icons"))---fn '" ++ myFont ++ "' -nb '" ++ myNormalBGColor ++ "' -nf '" ++ myNormalFGColor ++ "' -sb '" ++ myFocusedBGColor ++ "' -sf '" ++ myFocusedFGColor ++ "'`")
   , ((mod4Mask, xK_f), spawn ("exec /usr/local/bin/myrmidon.sh ~/.myrmidon-tasks.json"))---fn '" ++ myFont ++ "' -nb '" ++ myNormalBGColor ++ "' -nf '" ++ myNormalFGColor ++ "' -sb '" ++ myFocusedBGColor ++ "' -sf '" ++ myFocusedFGColor ++ "'`")
   , ((mod4Mask, xK_g), spawn ("alacritty -e nvim -c ':terminal'"))
   , ((mod4Mask, xK_c), spawn ("popupTimeDate"))
@@ -50,13 +45,6 @@ myLayoutHook = avoidStruts $ spacingRaw True (Border 0 10 10 10) True (Border 10
 myLogHook :: X ()
 myLogHook = fadeInactiveLogHook fadeAmount
   where fadeAmount = 0.85
-
---myStartupHook :: X ()
---myStartupHook = composeAll
-  --[ spawnOnOnce "Sys" "alacritty --hold -e archey3"
-  --, spawnOnOnce "Sys" "alacritty --hold -e ncspot"
-  --, spawnOnOnce "Sys" "qutebrowser -r msg"
-  --]
 
 myManageHook = composeAll []
 --composeAll
