@@ -1,12 +1,7 @@
-{ config, lib, pkgs, stdenv, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  popupTimeDate = pkgs.writeScriptBin "popupTimeDate" ''
-    title="$(date +%H:%M)"
-    date="$(date +%d) $(date +%B) $(date +%Y), $(date +%A)"
-    battery=$( cat /sys/class/power_supply/BAT0/capacity )
-    notify-send -i "$title" "$title $date Battery: $battery%"
-  '';
+  popupstatus = pkgs.callPackage ./scripts/popupstatus.nix { inherit config pkgs; };
 in {
   imports = [
     ./programs/git/default.nix
@@ -18,7 +13,6 @@ in {
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    TEST_THEN_DELETE_ME = "working";
   };
   home.packages = with pkgs; [ 
     any-nix-shell
@@ -35,6 +29,7 @@ in {
     gimp
     gparted
     jdk11
+    jq
     killall
     kitty
     libnotify
@@ -46,7 +41,7 @@ in {
     nodejs
     pavucontrol
     poetry
-    popupTimeDate
+    popupstatus
     qutebrowser
     rofi
     sbt
@@ -61,6 +56,7 @@ in {
   home.username = "chris";
   home.homeDirectory = "/home/chris";
   home.stateVersion = "21.03";
+
 
   services.dunst = {
     enable = true;
@@ -77,7 +73,6 @@ in {
         format = ''<b>%s</b>\n%b'';
       };
     };
-  #xsession.windowManager.i3.config.startup = [{ command = "${pkgs.dunst}/bin/dunst"; }];
   };
   services.screen-locker = {
     enable = true;

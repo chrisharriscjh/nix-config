@@ -74,7 +74,7 @@
 
   environment.systemPackages = with pkgs; [
     wget vim networkmanager git xorg.xkbcomp roboto-mono roboto xterm xclip
-    usbutils bolt
+    usbutils bolt openssh
   ];
 
   nix = {
@@ -91,6 +91,7 @@
   
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  programs.ssh.startAgent = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
