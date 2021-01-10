@@ -4,6 +4,7 @@ let
   popupstatus = pkgs.callPackage ./scripts/popupstatus.nix { inherit config pkgs; };
   popupcommands = pkgs.callPackage ./scripts/popupcommands.nix { inherit config pkgs; };
   popupcommands_confirm = pkgs.callPackage ./scripts/popupcommands_confirm.nix { inherit config pkgs; };
+  loadDesktopBackground = pkgs.callPackage ./scripts/loaddesktopbackground.nix { inherit config pkgs; };
 in {
   imports = [
     ./programs/git/default.nix
@@ -11,6 +12,7 @@ in {
     ./programs/rofi/default.nix
     ./services/dunst/default.nix
     ./services/gpg-agent/default.nix
+    /*./services/load-background/default.nix*/
     ./programs/neovim/default.nix
   ];
 
@@ -40,6 +42,7 @@ in {
     kitty
     libnotify
     libreoffice
+    loadDesktopBackground
     maim
     neovim
     neovim-remote
@@ -76,6 +79,23 @@ in {
     };
   };
 
+
+  systemd.user.services.loadBackground = {
+    Unit = {
+      Description = "Set background image using feh";
+      After = [ "graphical-session-pre.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.feh}/bin/feh --bg-scale /cfg/home/pictures/desktop_background.jpg";
+      IOSchedulingClass = "idle";
+    };
+
+    Install = { WantedBy = [ "graphical-session.target" ]; };
+  };
+
   services.screen-locker = {
     enable = true;
     inactiveInterval = 10;
@@ -84,6 +104,7 @@ in {
       "Xautolock.killer: systemctl suspend"
     ];
   };
+
   services.picom = {
     enable = true;
     activeOpacity = "1.0";
@@ -95,8 +116,13 @@ in {
     shadow = true;
     shadowOpacity = "0.75";
   };
+
   services.xcape = {
     enable = true;
     mapExpression = { Caps_Lock = "Escape"; };
   };
+
+  /*services.loadBackground = {*/
+    /*enable = true;*/
+  /*};*/
 }

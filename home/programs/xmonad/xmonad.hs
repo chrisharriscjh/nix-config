@@ -45,7 +45,7 @@ myLayoutHook = avoidStruts $ spacingRaw True (Border 0 10 10 10) True (Border 10
 
 myLogHook :: X ()
 myLogHook = fadeInactiveLogHook fadeAmount
-  where fadeAmount = 0.85
+  where fadeAmount = 0.90
 
 myManageHook = composeAll []
 --composeAll
