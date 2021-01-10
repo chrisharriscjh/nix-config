@@ -14,6 +14,7 @@ in {
     ./services/gpg-agent/default.nix
     /*./services/load-background/default.nix*/
     ./programs/neovim/default.nix
+    ./programs/autorandr/default.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
