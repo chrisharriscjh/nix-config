@@ -11,6 +11,7 @@ in {
     ./programs/rofi/default.nix
     ./services/dunst/default.nix
     ./services/gpg-agent/default.nix
+    ./programs/neovim/default.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -61,7 +62,6 @@ in {
     xorg.xev
     zoom-us
   ];
-  home.file.".vimrc".source = /cfg/vimrc;
   home.username = "chris";
   home.homeDirectory = "/home/chris";
   home.stateVersion = "21.03";

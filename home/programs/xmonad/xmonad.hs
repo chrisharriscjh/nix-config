@@ -32,7 +32,7 @@ myAdditionalKeys =
   [ ((mod4Mask, xK_w), spawn "qutebrowser")
   , ((mod4Mask, xK_s), spawn ("rofi-pass"))
   , ((mod4Mask, xK_d), spawn ("rofi -modi drun,ssh,window -show drun -show-icons"))
-  , ((mod4Mask, xK_f), spawn ("exec /usr/local/bin/myrmidon.sh ~/.myrmidon-tasks.json"))
+  , ((mod4Mask, xK_f), spawn ("popupCommands"))
   , ((mod4Mask, xK_g), spawn ("alacritty -e nvim -c ':terminal'"))
   , ((mod4Mask, xK_c), spawn ("popupStatus"))
   , ((mod4Mask, xK_v ), kill)

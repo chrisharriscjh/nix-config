@@ -1,15 +1,23 @@
 [
   {
-    "name": "autorandr",
-    "command": "autorandr"
-  },
-  {
     "name": "bluetooth on",
     "command": "bluetoothctl power on && bluetoothctl scan on"
   },
   {
     "name": "bluetooth off",
     "command": "bluetoothctl power off"
+  },
+  {
+    "name": "fabbit",
+    "command": "autorandr --change fabbit"
+  },
+  {
+    "name": "home",
+    "command": "autorandr --change home"
+  },
+  {
+    "name": "laptop",
+    "command": "autorandr --change laptop"
   },
   {
     "name": "lock",
