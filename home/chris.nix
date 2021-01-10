@@ -15,6 +15,7 @@ in {
     /*./services/load-background/default.nix*/
     ./programs/neovim/default.nix
     ./programs/autorandr/default.nix
+    ./services/spotifyd/default.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -35,6 +36,7 @@ in {
     feh
     firefox
     fzf
+    gawk
     gimp
     gparted
     jdk11
@@ -60,6 +62,8 @@ in {
     rofi-pass
     sbt
     (scala.override { jre = pkgs.jdk11; })
+    spotifyd
+    spotify-tui
     teams
     tree
     xcape
@@ -79,7 +83,6 @@ in {
       PASSWORD_STORE_KEY = "chrisharriscjh@gmail.com";
     };
   };
-
 
   systemd.user.services.loadBackground = {
     Unit = {

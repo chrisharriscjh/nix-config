@@ -73,9 +73,22 @@
   home-manager.users.chris = import ./home/chris.nix;
 
   environment.systemPackages = with pkgs; [
-    wget vim networkmanager git xorg.xkbcomp roboto-mono roboto xterm xclip
-    usbutils bolt openssh
+    bolt
+    git
+    networkmanager 
+    openssh
+    roboto
+    roboto-mono 
+    tlp
+    usbutils
+    vim 
+    wget 
+    xclip
+    xorg.xkbcomp 
+    xterm 
   ];
+
+  services.tlp.enable = true;
 
   nix = {
     autoOptimiseStore = true;

@@ -42,7 +42,7 @@ in {
             enable = true;
             primary = false;
             position = "1920x0";
-            mode = "1920x1080";
+            mode = "2560x1080";
             #gamma = "1.0:0.909:0.833";
             #rate = "60.00";
           };
