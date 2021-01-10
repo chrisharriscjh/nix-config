@@ -39,11 +39,7 @@ in
       "*hie.yaml" # ghcide files
       "*.mill-version" # used by metals
     ];
-    /*signing = {*/
-      /*key = "121D4302A64B2261";*/
-      /*signByDefault = true;*/
-    /*};*/
-    userName = "chrisharriscjh";
-    userEmail = "chrisharris_cjh@hotmail.com";
+    userName = "harris-chris";
+    userEmail = "chrisharriscjh@gmail.com";
   };
 }

@@ -1,0 +1,57 @@
+[
+  {
+    "name": "autorandr",
+    "command": "autorandr"
+  },
+  {
+    "name": "bluetooth on",
+    "command": "bluetoothctl power on && bluetoothctl scan on"
+  },
+  {
+    "name": "bluetooth off",
+    "command": "bluetoothctl power off"
+  },
+  {
+    "name": "lock",
+    "command": "betterlockscreen -l dim"
+  },
+  {
+    "name": "maim copy",
+    "command": "maim -s | xclip -selection clipboard -t image/png"
+  },
+  {
+    "name": "maim save",
+    "command": "maim -s ~/Downloads/screengrab_$(date +%s).png"
+  },
+  {
+    "name": "nnn",
+    "command": "alacritty -e nnn -c"
+  },
+  {
+    "name": "nvim",
+    "command": "alacritty -e nvim"
+  },
+  {
+    "name": "status",
+    "command": "popuptimedate"
+  },
+  {
+    "name": "term",
+    "command": "alacritty -e nvim -c ':terminal'"
+  },
+  {
+    "name": "power off",
+    "confirm": true,
+    "command": "systemctl poweroff"
+  },
+  {
+    "name": "reboot",
+    "confirm": true,
+    "command": "systemctl reboot"
+  },
+  {
+    "name": "suspend",
+    "confirm": true,
+    "command": "systemctl suspend"
+  }
+]

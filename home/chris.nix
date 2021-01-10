@@ -2,6 +2,8 @@
 
 let
   popupstatus = pkgs.callPackage ./scripts/popupstatus.nix { inherit config pkgs; };
+  popupcommands = pkgs.callPackage ./scripts/popupcommands.nix { inherit config pkgs; };
+  popupcommands_confirm = pkgs.callPackage ./scripts/popupcommands_confirm.nix { inherit config pkgs; };
 in {
   imports = [
     ./programs/git/default.nix
@@ -46,6 +48,8 @@ in {
     pavucontrol
     poetry
     popupstatus
+    popupcommands
+    popupcommands_confirm
     qutebrowser
     rofi
     rofi-pass
