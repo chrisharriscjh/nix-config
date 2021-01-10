@@ -7,6 +7,8 @@ in {
     ./programs/git/default.nix
     ./programs/xmonad/default.nix
     ./programs/rofi/default.nix
+    ./services/dunst/default.nix
+    ./services/gpg-agent/default.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -18,6 +20,7 @@ in {
     any-nix-shell
     alacritty
     autorandr
+    betterlockscreen
     conda
     chromium 
     curl
@@ -39,11 +42,13 @@ in {
     neovim-remote
     nnn
     nodejs
+    pass
     pavucontrol
     poetry
     popupstatus
     qutebrowser
     rofi
+    rofi-pass
     sbt
     (scala.override { jre = pkgs.jdk11; })
     teams
@@ -57,23 +62,16 @@ in {
   home.homeDirectory = "/home/chris";
   home.stateVersion = "21.03";
 
-
-  services.dunst = {
-    enable = true;
-    settings = {
-      global = {
-        transparency = 10;
-        notification_height = 0;
-        separator_height = 2;
-        padding = 15;
-        geometry = "600x50-50+65";
-        follow = "keyboard";
-        markup = "full";
-        font = "Roboto";
-        format = ''<b>%s</b>\n%b'';
-      };
+  programs = {
+    gpg.enable = true;
+    password-store.enable = true;
+    password-store.package = pkgs.pass;
+    password-store.settings = {
+      PASSWORD_STORE_DIR = "/cfg/home/pass";
+      PASSWORD_STORE_KEY = "chrisharriscjh@gmail.com";
     };
   };
+
   services.screen-locker = {
     enable = true;
     inactiveInterval = 10;
