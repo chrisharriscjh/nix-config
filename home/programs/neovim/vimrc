@@ -35,6 +35,8 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'jamessan/vim-gnupg'
 " }}}
 
+Plug 'ctrlpvim/ctrlp.vim'
+
 " Lightline-bufferline {{{
 Plug 'itchyny/lightline.vim'
   let g:lightline = {

@@ -49,5 +49,10 @@ in {
         };
       };
     };
+    hooks = {
+      postswitch = {
+        "change-background" = "loadDesktopBackground";
+      };
+    };
   };
 }

@@ -10,8 +10,8 @@
         /*password_cmd = "${pkgs.pass}/bin/pass spotify | ${pkgs.gawk}/bin/gawk NR==1";*/
         password = "ExamplePassword";
         device_name = "nix";
-        backend = "pulseaudio";
-        # backend = "alsa";
+        /*backend = "pulseaudio";*/
+        backend = "alsa";
       };
     };
   };
