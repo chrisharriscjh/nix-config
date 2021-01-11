@@ -7,6 +7,7 @@ let
   loadDesktopBackground = pkgs.callPackage ./scripts/loaddesktopbackground.nix { inherit config pkgs; };
 in {
   imports = [
+    ./programs/alacritty/default.nix
     ./programs/git/default.nix
     ./programs/xmonad/default.nix
     ./programs/rofi/default.nix
@@ -30,14 +31,18 @@ in {
     betterlockscreen
     conda
     chromium 
+    cudatoolkit
     curl
     dunst
     fd
     feh
+    file
     firefox
     fzf
     gawk
+    gcc
     gimp
+    gnumake
     gparted
     jdk11
     jq
@@ -53,6 +58,7 @@ in {
     nodejs
     pass
     pavucontrol
+    pciutils
     poetry
     popupstatus
     popupcommands
@@ -70,6 +76,7 @@ in {
     xorg.xev
     zoom-us
   ];
+
   home.username = "chris";
   home.homeDirectory = "/home/chris";
   home.stateVersion = "21.03";
@@ -90,13 +97,11 @@ in {
       After = [ "graphical-session-pre.target" ];
       PartOf = [ "graphical-session.target" ];
     };
-
     Service = {
       Type = "oneshot";
       ExecStart = "${pkgs.feh}/bin/feh --bg-scale /cfg/home/pictures/desktop_background.jpg";
       IOSchedulingClass = "idle";
     };
-
     Install = { WantedBy = [ "graphical-session.target" ]; };
   };
 
@@ -125,8 +130,4 @@ in {
     enable = true;
     mapExpression = { Caps_Lock = "Escape"; };
   };
-
-  /*services.loadBackground = {*/
-    /*enable = true;*/
-  /*};*/
 }
