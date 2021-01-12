@@ -56,6 +56,7 @@ in {
     neovim-remote
     nnn
     nodejs
+    pandoc
     pass
     pavucontrol
     pciutils

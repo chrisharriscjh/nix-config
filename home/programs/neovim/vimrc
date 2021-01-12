@@ -390,5 +390,5 @@ if has('nvim')
 endif
 " }}}
 
-set winblend=30
+"set winblend=30
 set numberwidth=3
