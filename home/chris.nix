@@ -11,6 +11,7 @@ in {
     ./programs/git/default.nix
     ./programs/xmonad/default.nix
     ./programs/rofi/default.nix
+    /*./programs/nnn/default.nix*/
     ./services/dunst/default.nix
     ./services/gpg-agent/default.nix
     /*./services/load-background/default.nix*/
@@ -72,6 +73,7 @@ in {
     spotifyd
     spotify-tui
     teams
+    texlive.combined.scheme-full
     tree
     xcape
     xorg.xev

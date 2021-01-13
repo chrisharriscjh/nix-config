@@ -35,7 +35,7 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'jamessan/vim-gnupg'
 " }}}
 
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'LnL7/vim-nix'
 
 " Lightline-bufferline {{{
 Plug 'itchyny/lightline.vim'
@@ -390,5 +390,4 @@ if has('nvim')
 endif
 " }}}
 
-"set winblend=30
 set numberwidth=3
