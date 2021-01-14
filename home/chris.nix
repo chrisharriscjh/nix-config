@@ -1,10 +1,21 @@
 { config, lib, pkgs, ... }:
 
-let
+let 
+  unstable = import
+    (builtins.fetchTarball {
+      url = https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+      sha256 = "0ww70kl08rpcsxb9xdx8m48vz41dpss4hh3vvsmswll35l158x0v";
+    })
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
   popupstatus = pkgs.callPackage ./scripts/popupstatus.nix { inherit config pkgs; };
   popupcommands = pkgs.callPackage ./scripts/popupcommands.nix { inherit config pkgs; };
   popupcommands_confirm = pkgs.callPackage ./scripts/popupcommands_confirm.nix { inherit config pkgs; };
   loadDesktopBackground = pkgs.callPackage ./scripts/loaddesktopbackground.nix { inherit config pkgs; };
+  home-manager = pkgs.writeShellScriptBin "home-manager" ''
+    # `toString` is required to impurely track your configuration instead of copying it to `/nix/store`
+    exec ${pkgs.home-manager}/bin/home-manager -f ${toString ./home.nix} $@
+  '';
 in {
   imports = [
     ./programs/alacritty/default.nix
@@ -45,6 +56,7 @@ in {
     gimp
     gnumake
     gparted
+    home-manager
     jdk11
     jq
     killall
@@ -61,7 +73,7 @@ in {
     pass
     pavucontrol
     pciutils
-    poetry
+    unstable.poetry
     popupstatus
     popupcommands
     popupcommands_confirm

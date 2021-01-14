@@ -4,10 +4,18 @@
 
 { config, pkgs, ... }:
 
-{
+let
+  unstable = import
+    (builtins.fetchTarball {
+      url = https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+      sha256 = "0ww70kl08rpcsxb9xdx8m48vz41dpss4hh3vvsmswll35l158x0v";
+    })
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
+in {
   nix.nixPath = [
     "nixos-config=/cfg" 
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
+    "nixpkgs=${unstable}"
   ];
 
   imports = [
