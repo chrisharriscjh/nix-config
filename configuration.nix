@@ -4,23 +4,14 @@
 
 { config, pkgs, ... }:
 
-let
-  unstable = import
-    (builtins.fetchTarball {
-      url = https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
-      sha256 = "0ww70kl08rpcsxb9xdx8m48vz41dpss4hh3vvsmswll35l158x0v";
-    })
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
-in {
-  nix.nixPath = [
-    "nixos-config=/cfg" 
-    "nixpkgs=${unstable}"
-  ];
-
+{
   imports = [
     ./hardware-configuration.nix
+    # Channels
+    ./system/channels.nix
+    # home-manager
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/release-20.09.tar.gz}/nixos")
+    # Xmonad
     ./system/wm/xmonad.nix
   ];
 
@@ -93,7 +84,7 @@ in {
     wget 
     xclip
     xorg.xkbcomp 
-    xterm 
+    nixpkgs-unstable.xterm 
   ];
 
   # CUDA stuff

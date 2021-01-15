@@ -1,13 +1,6 @@
 { config, lib, pkgs, ... }:
 
 let 
-  unstable = import
-    (builtins.fetchTarball {
-      url = https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
-      sha256 = "0ww70kl08rpcsxb9xdx8m48vz41dpss4hh3vvsmswll35l158x0v";
-    })
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
   popupstatus = pkgs.callPackage ./scripts/popupstatus.nix { inherit config pkgs; };
   popupcommands = pkgs.callPackage ./scripts/popupcommands.nix { inherit config pkgs; };
   popupcommands_confirm = pkgs.callPackage ./scripts/popupcommands_confirm.nix { inherit config pkgs; };
@@ -29,6 +22,7 @@ in {
     ./programs/neovim/default.nix
     ./programs/autorandr/default.nix
     ./services/spotifyd/default.nix
+    ../system/channels.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -73,7 +67,7 @@ in {
     pass
     pavucontrol
     pciutils
-    unstable.poetry
+    nixpkgs-unstable.poetry
     popupstatus
     popupcommands
     popupcommands_confirm
@@ -83,7 +77,7 @@ in {
     sbt
     (scala.override { jre = pkgs.jdk11; })
     spotifyd
-    spotify-tui
+    nixpkgs-unstable.spotify-tui
     teams
     texlive.combined.scheme-full
     tree
