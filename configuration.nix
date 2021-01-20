@@ -49,9 +49,33 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
+  console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
-  
   time.timeZone = "Asia/Tokyo";
+
+  fonts.fonts = with pkgs; [
+    roboto
+    roboto-mono 
+    dejavu_fonts
+    ipafont
+    kochi-substitute
+  ];
+  fonts.fontconfig.defaultFonts = {
+    monospace = [
+      "DejaVu Sans Mono"
+      "IPAGothic"
+    ];
+    sansSerif = [
+      "DejaVu Sans"
+      "IPAPGothic"
+    ];
+    serif = [
+      "DejaVu Serif"
+      "IPAPMincho"
+    ];
+  };
+  i18n.inputMethod.enabled = "fcitx";
+  i18n.inputMethod.fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -76,9 +100,8 @@
     git
     networkmanager 
     openssh
-    roboto
-    roboto-mono 
     tlp
+    udevil
     usbutils
     vim 
     wget 

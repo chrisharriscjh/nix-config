@@ -4,6 +4,7 @@ let
   popupstatus = pkgs.callPackage ./scripts/popupstatus.nix { inherit config pkgs; };
   popupcommands = pkgs.callPackage ./scripts/popupcommands.nix { inherit config pkgs; };
   popupcommands_confirm = pkgs.callPackage ./scripts/popupcommands_confirm.nix { inherit config pkgs; };
+  unzip_sjis = pkgs.callPackage ./scripts/unzip_sjis.nix { inherit config pkgs; };
   loadDesktopBackground = pkgs.callPackage ./scripts/loaddesktopbackground.nix { inherit config pkgs; };
   home-manager = pkgs.writeShellScriptBin "home-manager" ''
     # `toString` is required to impurely track your configuration instead of copying it to `/nix/store`
@@ -36,6 +37,7 @@ in {
     autorandr
     betterlockscreen
     conda
+    convmv
     chromium 
     cudatoolkit
     curl
@@ -61,8 +63,10 @@ in {
     maim
     neovim
     neovim-remote
+    nix-prefetch-git
     nnn
     nodejs
+    p7zip
     pandoc
     pass
     pavucontrol
@@ -81,6 +85,8 @@ in {
     teams
     texlive.combined.scheme-full
     tree
+    unzip
+    unzip_sjis
     xcape
     xorg.xev
     zoom-us
