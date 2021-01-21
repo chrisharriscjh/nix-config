@@ -7,6 +7,7 @@ import XMonad.Layout.Spacing
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Util.Run(spawnPipe)
 import System.IO
 
@@ -47,7 +48,8 @@ myLogHook :: X ()
 myLogHook = fadeInactiveLogHook fadeAmount
   where fadeAmount = 0.90
 
-myManageHook = composeAll []
---composeAll
-  --[ className =? "qutebrowser" --> doF (W.shift (myWorkspaces !! 1))
-  --]
+--myManageHook = isDialog --> doF W.shiftMaster <+> doF W.swapDown
+--myManageHook = composeAll []
+myManageHook = composeOne
+  [ return True -?> doF W.swapDown
+  ]
