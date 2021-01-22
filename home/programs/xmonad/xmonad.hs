@@ -1,6 +1,5 @@
 import XMonad
-import XMonad.Util.SpawnOnce
-import XMonad.Util.Paste
+import XMonad.Actions.CycleWS
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Layout.Spacing
@@ -9,6 +8,8 @@ import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.SpawnOnce
+import XMonad.Util.Paste
 import System.IO
 
 main = do
@@ -36,6 +37,8 @@ myAdditionalKeys =
   , ((mod4Mask, xK_f), spawn ("popupCommands"))
   , ((mod4Mask, xK_g), spawn ("alacritty -e nvim -c ':terminal'"))
   , ((mod4Mask, xK_c), spawn ("popupStatus"))
+  , ((mod4Mask, xK_h), prevWS)
+  , ((mod4Mask, xK_l), nextWS)
   , ((mod4Mask, xK_v ), kill)
   ] ++ 
   [((m .|. mod4Mask, k), windows $ f i)

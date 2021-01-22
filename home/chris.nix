@@ -61,6 +61,7 @@ in {
     libreoffice
     loadDesktopBackground
     maim
+    ncpamixer
     neovim
     neovim-remote
     nix-prefetch-git
