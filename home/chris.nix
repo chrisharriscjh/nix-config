@@ -6,6 +6,7 @@ let
   popupcommands_confirm = pkgs.callPackage ./scripts/popupcommands_confirm.nix { inherit config pkgs; };
   unzip_sjis = pkgs.callPackage ./scripts/unzip_sjis.nix { inherit config pkgs; };
   loadDesktopBackground = pkgs.callPackage ./scripts/loaddesktopbackground.nix { inherit config pkgs; };
+  #setJupyterConfig = pkgs.callPackage ./programs/jupyter/default.nix { inherit config pkgs; };
   home-manager = pkgs.writeShellScriptBin "home-manager" ''
     # `toString` is required to impurely track your configuration instead of copying it to `/nix/store`
     exec ${pkgs.home-manager}/bin/home-manager -f ${toString ./home.nix} $@
@@ -14,6 +15,7 @@ in {
   imports = [
     ./programs/alacritty/default.nix
     ./programs/git/default.nix
+    ./programs/jupyter/default.nix
     ./programs/xmonad/default.nix
     ./programs/rofi/default.nix
     /*./programs/nnn/default.nix*/
@@ -55,6 +57,7 @@ in {
     home-manager
     jdk11
     jq
+    #jupyterlab
     killall
     kitty
     libnotify
@@ -67,6 +70,7 @@ in {
     nix-prefetch-git
     nnn
     nodejs
+    openvpn
     p7zip
     pandoc
     pass
@@ -81,6 +85,7 @@ in {
     rofi-pass
     sbt
     (scala.override { jre = pkgs.jdk11; })
+    signal-desktop
     spotifyd
     nixpkgs-unstable.spotify-tui
     teams
