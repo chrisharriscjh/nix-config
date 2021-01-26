@@ -93,6 +93,7 @@ in {
     tree
     unzip
     unzip_sjis
+    vlc
     xcape
     xorg.xev
     zoom-us
@@ -109,6 +110,15 @@ in {
     password-store.settings = {
       PASSWORD_STORE_DIR = "/cfg/home/pass";
       PASSWORD_STORE_KEY = "chrisharriscjh@gmail.com";
+    };
+    bash = {
+      enable = true;
+      historyFileSize = 1000000;
+      historyControl = [ "erasedups" "ignoredups" ];
+      historyIgnore = [ "ls" "cd" "exit" ];
+      initExtra = ''
+        [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+      '';
     };
   };
 
