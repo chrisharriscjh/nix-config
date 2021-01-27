@@ -3,6 +3,7 @@ import XMonad.Actions.CycleWS
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Layout.Spacing
+import XMonad.Layout.ResizableTile
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
@@ -30,6 +31,8 @@ main = do
 myWorkspaces = ["Sys", "Msg", "1", "2", "3", "4", "Log"]
 workSpaceShortcuts = [xK_y, xK_u, xK_i, xK_o, xK_p, xK_bracketleft, xK_bracketright]
 
+
+
 myAdditionalKeys = 
   [ ((mod4Mask, xK_w), spawn "qutebrowser")
   , ((mod4Mask, xK_s), spawn ("rofi-pass"))
@@ -37,6 +40,8 @@ myAdditionalKeys =
   , ((mod4Mask, xK_f), spawn ("popupCommands"))
   , ((mod4Mask, xK_g), spawn ("alacritty -e nvim -c ':terminal'"))
   , ((mod4Mask, xK_c), spawn ("popupStatus"))
+  , ((mod4Mask, xK_comma), sendMessage Shrink)
+  , ((mod4Mask, xK_period), sendMessage Expand)
   , ((mod4Mask, xK_h), prevWS)
   , ((mod4Mask, xK_l), nextWS)
   , ((mod4Mask, xK_v ), kill)
