@@ -92,6 +92,7 @@
     extraGroups   = [ "wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
     shell         = pkgs.bash;
   };
+  nix.trustedUsers = ["root" "chris" ];
 
   home-manager.users.chris = import ./home/chris.nix;
 
