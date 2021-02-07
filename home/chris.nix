@@ -43,6 +43,7 @@ in {
     chromium 
     cudatoolkit
     curl
+    gitAndTools.diff-so-fancy
     dunst
     fd
     feh
