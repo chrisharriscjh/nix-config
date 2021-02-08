@@ -121,6 +121,7 @@ in {
       initExtra = ''
         [ -f ~/.fzf.bash ] && source ~/.fzf.bash
       eval "$(direnv hook bash)"
+      eval "$(ssh-agent -s)" > /dev/null
       # For neovim remote auto-completion
       _nvr_opts_completions()
       {
