@@ -55,6 +55,7 @@ in {
     gimp
     gnumake
     gparted
+    ncurses
     nixpkgs-unstable.haskellPackages.haskell-language-server
     home-manager
     htop
@@ -75,9 +76,9 @@ in {
     nodejs
     openvpn
     p7zip
+    paperkey
     pandoc
     pass
-    pavucontrol
     pciutils
     popupstatus
     popupcommands
