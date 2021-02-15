@@ -31,8 +31,6 @@ main = do
 myWorkspaces = ["Sys", "Msg", "1", "2", "3", "4", "Log"]
 workSpaceShortcuts = [xK_y, xK_u, xK_i, xK_o, xK_p, xK_bracketleft, xK_bracketright]
 
-
-
 myAdditionalKeys = 
   [ ((mod4Mask, xK_w), spawn "qutebrowser")
   , ((mod4Mask, xK_s), spawn ("rofi-pass"))

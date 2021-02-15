@@ -94,6 +94,7 @@ in {
     teams
     texlive.combined.scheme-full
     tree
+    unetbootin
     unzip
     unzip_sjis
     vlc

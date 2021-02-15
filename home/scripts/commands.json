@@ -45,7 +45,11 @@
   },
   {
     "name": "term",
-    "command": "alacritty -e nvim -c ':terminal'"
+    "command": "alacritty -e nvim -c ':term'"
+  },
+  {
+    "name": "vol",
+    "command": "alacritty -e ncpamixer"
   },
   {
     "name": "power off",
