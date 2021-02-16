@@ -1,5 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
+# Edit this configuration file to define what should be installed on # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
@@ -28,11 +27,10 @@
     fsType = "ext4";
   };
 
-  fileSystems."/arch" = 
-  { device = "/dev/disk/by-label/arch";
-    fsType = "ext4";
-  };
-
+  swapDevices=[
+    { device="/var/swap";
+      size=12288;}
+  ];
 
   networking.hostName = "nixos"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -129,6 +127,7 @@
       options   = "--delete-older-than 7d";
     };
   };
+  environment.variables.NIX_CONFIG = "/cfg/configuration.nix";
 
   # Binary Cache for Haskell.nix
   nix.binaryCachePublicKeys = [
