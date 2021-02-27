@@ -193,7 +193,7 @@ in {
   };
 
   services.screen-locker = {
-    enable = true;
+    enable = false;
     inactiveInterval = 10;
     lockCmd = "${pkgs.betterlockscreen}/bin/betterlockscreen -l dim";
     xautolockExtraOptions = [
