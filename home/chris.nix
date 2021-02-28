@@ -18,6 +18,7 @@ in {
     ./programs/jupyter/default.nix
     ./programs/xmonad/default.nix
     ./programs/rofi/default.nix
+    #./programs/mailspring/default.nix
     /*./programs/nnn/default.nix*/
     ./services/dunst/default.nix
     ./services/gpg-agent/default.nix
@@ -67,6 +68,7 @@ in {
     libnotify
     libreoffice
     loadDesktopBackground
+    mailspring
     maim
     ncpamixer
     neovim
@@ -191,6 +193,7 @@ in {
     };
     Install = { WantedBy = [ "graphical-session.target" ]; };
   };
+
 
   services.screen-locker = {
     enable = false;

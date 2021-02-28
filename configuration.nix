@@ -97,6 +97,8 @@
   environment.systemPackages = with pkgs; [
     bolt
     git
+    gnome3.gnome-keyring
+    libsecret
     networkmanager 
     openssh
     tlp
@@ -118,6 +120,9 @@
   #};
 
   services.tlp.enable = true;
+
+  # For mailspring
+  services.gnome3.gnome-keyring.enable = true;
 
   nix = {
     autoOptimiseStore = true;
