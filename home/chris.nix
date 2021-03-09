@@ -73,6 +73,7 @@ in {
     ncpamixer
     neovim
     neovim-remote
+    niv
     nix-prefetch-git
     nnn
     nodejs
@@ -86,6 +87,7 @@ in {
     popupcommands
     popupcommands_confirm
     qutebrowser
+    rnix-lsp
     rofi
     rofi-pass
     sbt
