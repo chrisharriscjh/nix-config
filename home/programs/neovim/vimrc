@@ -186,7 +186,7 @@ Plug 'airblade/vim-gitgutter'
 " }}} vim-gitgutter
 
 " vimwiki {{{
-  Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
   set nocompatible
   filetype plugin on
   syntax on
@@ -338,7 +338,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " nnn.vim {{{
 Plug 'mcchrish/nnn.vim'
 let g:nnn#set_default_mappings = 0
-nnoremap <silent> <leader> nn :NnnPicker<CR>
+nnoremap <silent> <leader>nn :NnnPicker<CR>i
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 " }}} nnn.vim
 
 Plug 'preservim/nerdcommenter'
