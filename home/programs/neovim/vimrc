@@ -188,7 +188,7 @@ Plug 'airblade/vim-gitgutter'
 " vim.wiki {{{
 Plug 'lervag/wiki.vim'
   let g:wiki_filetypes = ['md']
-  let g:wiki_root = '/data/ch_notes/index.md'
+  let g:wiki_root = '/data/ch_notes'
   let g:wiki_link_target_type = 'md'
   nmap <leader>vv :WikiIndex<CR>
 " }}} vim.wiki

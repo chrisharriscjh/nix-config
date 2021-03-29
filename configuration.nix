@@ -33,6 +33,9 @@
   ];
 
   networking.hostName = "nixos"; # Define your hostname.
+  networking.extraHosts = ''
+    127.0.0.1 wumble.test
+  '';
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -147,6 +150,7 @@
   
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.authorizedKeysFiles = ["/data/ssh"];
   programs.ssh.startAgent = true;
   programs.ssh.agentTimeout = null;
 
