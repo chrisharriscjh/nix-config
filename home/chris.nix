@@ -44,6 +44,7 @@ in {
     chromium 
     cudatoolkit
     curl
+    docker-compose
     gitAndTools.diff-so-fancy
     dunst
     fd
