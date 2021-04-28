@@ -81,6 +81,9 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+  # For chromecast
+  services.avahi.enable = true;
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio = {
@@ -112,6 +115,9 @@
     xclip
     xorg.xkbcomp 
     nixpkgs-unstable.xterm 
+    (chromium.override {
+      commandLineArgs = "--load-media-router-component-extension=1";
+    })
   ];
 
   # CUDA stuff
@@ -156,9 +162,9 @@
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  #networking.firewall.allowedUDPPortRanges = [ { from = 32768; to = 60999; } ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+   networking.firewall.enable = false;
 
   system.stateVersion = "20.09"; # Did you read the comment?
 

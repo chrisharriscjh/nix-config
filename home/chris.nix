@@ -11,6 +11,15 @@ let
     # `toString` is required to impurely track your configuration instead of copying it to `/nix/store`
     exec ${pkgs.home-manager}/bin/home-manager -f ${toString ./home.nix} $@
   '';
+  julia_pkgs = import (builtins.fetchGit {
+      # Descriptive name to make the store path easier to identify                
+      name = "my-old-revision";                                                 
+      url = "https://github.com/NixOS/nixpkgs/";                       
+      ref = "refs/heads/nixpkgs-unstable";                     
+      rev = "bed08131cd29a85f19716d9351940bdc34834492";                                           
+  }) {};                                                                           
+
+  julia153 = julia_pkgs.julia;
 in {
   imports = [
     ./programs/alacritty/default.nix
@@ -41,7 +50,6 @@ in {
     betterlockscreen
     conda
     convmv
-    chromium 
     cudatoolkit
     curl
     docker-compose
@@ -63,6 +71,7 @@ in {
     htop
     jdk11
     jq
+    julia153
     #jupyterlab
     killall
     kitty
